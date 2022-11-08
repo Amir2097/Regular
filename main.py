@@ -6,6 +6,7 @@ with open("phonebook_raw.csv", encoding='utf-8') as f:
     rows = csv.reader(f, delimiter=",")
     contacts_list = list(rows)
     new_contact_list = []
+    len_title = len(contacts_list[0])
 
 
 def editing_data():
@@ -58,6 +59,9 @@ def del_clon():
                     contact[6] = new_contact[6]
 
     for contact in contacts_list:
+        if len(contact) != len_title:
+            del contact[-1]
+
         if contact not in new_contact_list:
             new_contact_list.append(contact)
     return new_contact_list
